@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ChocoZebra</string>
+    <string name="activity_intent">com.example.mi_app.ACTION</string>
+    <string name="datawedge_data">com.symbol.datawedge.data_string</string>
+</resources>
