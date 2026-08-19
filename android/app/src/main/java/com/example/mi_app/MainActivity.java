@@ -19,11 +19,7 @@ public class MainActivity extends FlutterActivity {
         filter.addCategory(Intent.CATEGORY_DEFAULT);
         filter.addAction(getResources().getString(R.string.activity_intent));
         // check OS version
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            registerReceiver(myBroadcastReceiver, filter, Context.RECEIVER_EXPORTED);
-        } else {
-            registerReceiver(myBroadcastReceiver, filter);
-        }
+        registerReceiver(myBroadcastReceiver, filter, RECEIVER_EXPORTED);
     }
 
     @Override
@@ -41,7 +37,7 @@ public class MainActivity extends FlutterActivity {
             if (action.equals(getResources().getString(R.string.activity_intent))) {
                 //  Received a barcode scan
                 try {
-                    displayScanResult(intent, "via Broadcast");
+                    displayScanResult(intent);
                 } catch (Exception e) {
                     Log.d("ChocoZebra", "Error occurred" + e.getMessage());
                 }
@@ -49,7 +45,7 @@ public class MainActivity extends FlutterActivity {
         }
     }; 
 
-    private void displayScanResult(Intent initiatingIntent, String howDataReceived) {
+    private void displayScanResult(Intent initiatingIntent) {
         // content
         String content = initiatingIntent.getStringExtra(getResources().getString(R.string.datawedge_data));
         // display the content in a toast
